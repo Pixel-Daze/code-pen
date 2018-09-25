@@ -103,6 +103,6 @@
     "sass-loader": "^7.0.2"
   },
   "output": [
-    "build/**"
+    "docs/**"
   ]
 }
