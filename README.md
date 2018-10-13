@@ -71,3 +71,29 @@ const arrayToCSV = (arr, delimiter = ',') =>
 arrayToCSV([['x', 'y'], ['a', 'b', 'c']]); // "'x','y'/n'a','b','c'"
 arrayToCSV([[1, 2, 3], ['a', 'b', 'c']], ';')// "'1';'2';'3'/n'a';'b';'c'"
 ```
+
+### bifurcate
+>将值拆分成两组。如果一个元素在`filter`中是true，则在集合中对应的元素属于第一个组，否则它就属于第二个组。
+>使用`Array.prototype.reduce()`和`Array.prototype.push()`并根据`filter`向组中添加元素。
+
+>`reduce(callback,[initialValue])`方法为数组中的每一个元素依次执行回调函数（不包括数组中被删除或从未被赋值的元素），返回一个具体的结果。
+>- callback （执行数组中每个值的函数，包含四个参数）
+>    - previousValue （第一项的值或者上一次叠加的结果值，或者是提供的初始值（initialValue））
+>    - currentValue （数组中当前被处理的元素）
+>    - index （当前元素在数组中的索引）
+>    - array （数组本身）
+>- initialValue （作为第一次调用 callback 的第一个参数，可以控制返回值的格式）
+
+>注：根据bifurcate表现，箭头函数函数体中，代码用`()`包裹，用`,`隔开，返回最后一句代码，[mdn](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)上未提供该写法。
+```
+/**
+ * @name bifurcate
+ * @param {Array} arr 
+ * @param {Array} filter 
+ * @returns {Array}
+ */
+const bifurcate = (arr, filter) =>
+    arr.reduce((acc, val, i) => (acc[filter[i] ? 0 : 1].push(val), acc), [[], []]);
+    
+bifurcate(['beep', 'boop', 'foo', 'bar'], [true, true, false, true]); // [ [ 'beep', 'boop', 'bar' ], [ 'foo' ] ]
+```
