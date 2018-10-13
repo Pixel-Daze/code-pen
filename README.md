@@ -54,3 +54,20 @@ any([1, 2, 3], x => x > 2); // true
 any([1, 2, 3], x => x > 4); // false
 any([0]); // false
 ```
+
+### arrayToCSV
+>将一个二维数组转化为一个用逗号分隔的字符串。
+>使用`Array.prototype.map()`和`Array.prototype.join(delimiter)`将单独的一维数组组合成字符串。使用`Array.prototype.join('\n')`将所有行组合成CSV字符串，用新的一行分隔字符串。第二个参数`delimiter`可以缺省,使用`,`作为默认分隔符。
+```
+/**
+ * @name arrayToCSV
+ * @param {Array} arr 
+ * @param {String} delimiter 
+ * @returns {String}
+ */
+const arrayToCSV = (arr, delimiter = ',') =>
+    arr.map(v => v.map(x => `'${x}'`).join(delimiter)).join('\n');
+
+arrayToCSV([['x', 'y'], ['a', 'b', 'c']]); // "'x','y'/n'a','b','c'"
+arrayToCSV([[1, 2, 3], ['a', 'b', 'c']], ';')// "'1';'2';'3'/n'a';'b';'c'"
+```
