@@ -133,3 +133,19 @@ const chunk = (arr, size) =>
 
 chunk([1, 2, 3, 4, 5], 2); // [ [ 1, 2 ], [ 3, 4 ], [ 5 ] ]
 ```
+
+### compact
+>移除数组中的false值。
+>使用[`Array.prototype.filter()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)来过滤掉false值(`false`, `null`,` 0`,` ""`, `undefined,` and `NaN`)。
+
+>`filter(fn)` 方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素。
+```
+/**
+ * @name compact
+ * @param {Array} arr 
+ * @returns {Array}
+ */
+const compact = arr => arr.filter(Boolean);
+
+compact([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34]); // [ 1, 2, 3, 'a', 's', 34 ]
+```

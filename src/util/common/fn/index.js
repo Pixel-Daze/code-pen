@@ -5,6 +5,7 @@ import arrayToCSV from './arrayToCSV'
 import bifurcate from './bifurcate'
 import bifurcateBy from './bifurcateBy'
 import chunk from './chunk'
+import compact from './compact'
 
 var pd = {
     all: all,
@@ -13,7 +14,8 @@ var pd = {
     arrayToCSV: arrayToCSV,
     bifurcate: bifurcate,
     bifurcateBy: bifurcateBy,
-    chunk: chunk
+    chunk: chunk,
+    compact: compact
 }
 
 export default pd
