@@ -1,6 +1,6 @@
 ### all
 >如果所提供的判定函数对集合中的所有元素都返回`true`，则返回`true`，否则返回`false`。
-使用`Array.prototype.every()`来测试集合中所有元素是否都基于`fn`返回`true`。第二个参数`fn`可以缺省，使用`Boolean`作为默认值，等价于`return new Boolean(x)`。
+使用[`Array.prototype.every()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/every)来测试集合中所有元素是否都基于`fn`返回`true`。第二个参数`fn`可以缺省，使用`Boolean`作为默认值，等价于`return new Boolean(x)`。
 
 > `every(fn)` 方法使用`fn`检测数组中的所有元素：
 > - 如果数组中检测到有一个元素不满足，则整个表达式返回 `false` ，且剩余的元素不会再进行检测。
@@ -21,7 +21,7 @@ all([2, 3, 4], x => x > 1); // true
 
 ### allEqual
 >检查数组内所有元素是否都相等。
-用`Array.prototype.every()`检查是否数组中的所有元素都和数组中第一个元素相同。
+用[`Array.prototype.every()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/every)检查是否数组中的所有元素都和数组中第一个元素相同。
 ```
 /**
  * @name allEqual
@@ -36,7 +36,7 @@ allEqual([1, 1, 1, 1]); // true
 
 ### any
 >如果提供的判定函数对集合中至少一个元素返回`true`，则返回`true`，否则返回`false`。
-使用`Array.prototype.some()`来测试集合中所有元素是否都基于`fn`返回`true`。第二个参数fn可以缺省，使用`Boolean`作为默认值，等价于`return new Boolean(x)`。
+使用[`Array.prototype.some()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/some)来测试集合中所有元素是否都基于`fn`返回`true`。第二个参数fn可以缺省，使用`Boolean`作为默认值，等价于`return new Boolean(x)`。
 
 >`some(fn)` 方法使用`fn`检测数组中的所有元素：
 > - 如果有一个元素满足条件，则表达式返回`true` , 剩余的元素不会再执行检测。
@@ -58,6 +58,8 @@ any([0]); // false
 ### arrayToCSV
 >将一个二维数组转化为一个用逗号分隔的字符串。
 >使用`Array.prototype.map()`和`Array.prototype.join(delimiter)`将单独的一维数组组合成字符串。使用`Array.prototype.join('\n')`将所有行组合成CSV字符串，用新的一行分隔字符串。第二个参数`delimiter`可以缺省,使用`,`作为默认分隔符。
+
+>`map(fn)`方法将原数组中的每个元素调用`fn`后，返回返回值组成的新数组。
 ```
 /**
  * @name arrayToCSV
@@ -74,7 +76,7 @@ arrayToCSV([[1, 2, 3], ['a', 'b', 'c']], ';')// "'1';'2';'3'/n'a';'b';'c'"
 
 ### bifurcate
 >将值拆分成两组。如果一个元素在`filter`中是true，则在集合中对应的元素属于第一个组，否则它就属于第二个组。
->使用`Array.prototype.reduce()`和`Array.prototype.push()`并根据`filter`向组中添加元素。
+>使用[`Array.prototype.reduce()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)和`Array.prototype.push()`并根据`filter`向组中添加元素。
 
 >`reduce(callback,[initialValue])`方法为数组中的每一个元素依次执行回调函数（不包括数组中被删除或从未被赋值的元素），返回一个具体的结果。
 >- callback （执行数组中每个值的函数，包含四个参数）
@@ -100,7 +102,7 @@ bifurcate(['beep', 'boop', 'foo', 'bar'], [true, true, false, true]); // [ [ 'be
 
 ### bifurcateBy
 >根据判定函数将值拆分成两组，判定函数指定输入集合中的元素属于哪一个组。如果判定函数返回true，则在集合中对应的元素属于第一个组，否则它就属于第二个组。
->使用`Array.prototype.reduce()`和`Array.prototype.push()`并根据`fn`向组中添加元素。
+>使用[`Array.prototype.reduce()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)和`Array.prototype.push()`并根据`fn`向组中添加元素。
 ```
 /**
  * @name bifurcateBy
@@ -109,7 +111,25 @@ bifurcate(['beep', 'boop', 'foo', 'bar'], [true, true, false, true]); // [ [ 'be
  * @returns {Array}
  */
 const bifurcateBy = (arr, fn) =>
-    arr.reduce((acc, val, i) => (acc[fn(val, i) ? 0 : 1].push(val), acc), [[],[]]);
+    arr.reduce((acc, val, i) => (acc[fn(val, i) ? 0 : 1].push(val), acc), [[], []]);
 
 bifurcateBy(['beep', 'boop', 'foo', 'bar'], x => x[0] === 'b'); //[ [ 'beep', 'boop', 'bar' ], [ 'foo' ] ]
+```
+
+### chunk
+>将数组拆分为指定大小的更小的数组。
+>使用[`Array.from()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/from)创建一个新数组，这个数组长度长度为生成的块的数量。使用[`Array.prototype.slice()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)将新数组的每一个元素映射到长度为size的块中。如果原始属组不能被平均分，最后一个数组将会包含剩余元素。
+```
+/**
+ * @name chunk
+ * @param {Array} arr 
+ * @param {Number} size 
+ * @returns {Array}
+ */
+const chunk = (arr, size) => 
+    Array.from({ length: Math.ceil(arr.length / size) }, (v, i) => 
+        arr.slice(size * i, size * i + size)
+    );
+
+chunk([1, 2, 3, 4, 5], 2); // [ [ 1, 2 ], [ 3, 4 ], [ 5 ] ]
 ```
