@@ -149,3 +149,23 @@ const compact = arr => arr.filter(Boolean);
 
 compact([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34]); // [ 1, 2, 3, 'a', 's', 34 ]
 ```
+
+### countBy
+>根据给定函数对数组的元素进行分组，并返回每个组中元素的数量。
+>使用`Array.prototype.map()`将数组中的值映射到一个方法或者属性名。通过`Array.prototype.reduce()`创建一个对象，对象的属性由前面的映射结果生成。
+```
+/**
+ * @name countBy
+ * @param {Array} arr 
+ * @param {*} fn 
+ * @returns {Object}
+ */
+const countBy = (arr, fn) => 
+    arr.map(typeof fn === 'function' ? fn : val => val[fn]).reduce((acc, val) => {
+        acc[val] = (acc[val] || 0) + 1;
+        return acc;
+    }, {});
+
+countBy([6.1, 4.2, 6.3], Math.floor); // { '4': 1, '6': 2 }
+countBy(['one', 'two', 'three'], 'length'); // { '3': 2, '5': 1 }
+```

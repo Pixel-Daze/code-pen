@@ -6,6 +6,7 @@ import bifurcate from './bifurcate'
 import bifurcateBy from './bifurcateBy'
 import chunk from './chunk'
 import compact from './compact'
+import countBy from './countBy'
 
 var pd = {
     all: all,
@@ -15,7 +16,8 @@ var pd = {
     bifurcate: bifurcate,
     bifurcateBy: bifurcateBy,
     chunk: chunk,
-    compact: compact
+    compact: compact,
+    countBy: countBy
 }
 
 export default pd
