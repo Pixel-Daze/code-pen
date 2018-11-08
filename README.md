@@ -1,3 +1,6 @@
+>**[30-seconds-of-code](https://github.com/30-seconds/30-seconds-of-code)**提供了大量精彩的函数片段，你可以花30s或者更短的时间来理解这些代码段，理解这些函数的应用相信对自己会有一定的帮助。
+>本系列只涉及数组处理方面函数，为了方便阅读，每篇8-10条，总计10篇，`**生产环境慎用!**`,`**生产环境慎用!**`,`**生产环境慎用!**`重要的事情说三遍。
+
 ### all
 >如果所提供的判定函数对集合中的所有元素都返回`true`，则返回`true`，否则返回`false`。
 使用[`Array.prototype.every()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/every)来测试集合中所有元素是否都基于`fn`返回`true`。第二个参数`fn`可以缺省，使用`Boolean`作为默认值，等价于`return new Boolean(x)`。
@@ -168,4 +171,19 @@ const countBy = (arr, fn) =>
 
 countBy([6.1, 4.2, 6.3], Math.floor); // { '4': 1, '6': 2 }
 countBy(['one', 'two', 'three'], 'length'); // { '3': 2, '5': 1 }
+```
+
+### countOccurrences
+>计算数组中的值出现的次数。
+>每次你遇见数组中的某个具体值，就用`Array.prototype.reduce()`来增加计数器。
+```
+/**
+ * @name countOccurrences
+ * @param {Array} arr 
+ * @param {*} val 
+ * @returns {Number}
+ */
+const countOccurrences = (arr, val) => arr.reduce((a, v) => v === val ? a + 1 : a, 0);
+
+countOccurrences([1, 1, 2, 1, 2, 3], 1); // 3
 ```
