@@ -73,23 +73,24 @@ $_precision: 10;
 
 
 
-@mixin hexagon($size: 300px, $background: url(http://placekitten.com/g/650), $shadow: 0 0 20px rgba(0,0,0,0.8), $borderWidth: 3px){
+@mixin hexagon($size: 300px, $background: url(http://placekitten.com/g/650), $shadow: 0 0 20px rgba(0,0,0,0), $borderWidth: 3px){
     $scaleFactor: tan(30deg); /*this smushes a square into a 60deg/120deg rhombus*/
     $inverseScale: 1/$scaleFactor;
     $sideLength: $size/sqrt(3);
     $totalHeight: $sideLength + $size;
     $boxShadow: $shadow;
     $scaledBorderWidth: $borderWidth/$scaleFactor;
-    $border: solid #{$borderWidth} #fff;
-    $scaledBorder: solid #{$scaledBorderWidth} #fff;
+    $border: solid #{$borderWidth} #2a21b2;
+    $scaledBorder: solid #{$scaledBorderWidth} #2a21b2;
     
     position: relative;
     width: $size;
     height: $sideLength;
     margin-top: $size/3;
     margin-bottom: $size/3;
+    margin-left: $size/3;
     // background: $background;
-    background-size: $totalHeight auto;
+    background-size: $totalHeight $totalHeight;
     background-position: center center;
     object-fit: cover;
     box-shadow: $boxShadow; 
@@ -163,7 +164,7 @@ $_precision: 10;
 
   .hexagon2 {
    @include hexagon();
-   @include hexagon(500px, url(http://placekitten.com/g/750));
+   @include hexagon(100px, url(http://placekitten.com/g/750));
 }
 
 .hexagon3 {
