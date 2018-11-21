@@ -98,7 +98,12 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "babel-preset-react-native-stage-0": "^1.0.1",
+    "babel-preset-stage-2": "^6.24.1",
     "compass-mixins": "^0.12.10",
+    "mobx": "^5.6.0",
+    "mobx-react": "^5.4.2",
+    "mobx-react-devtools": "^6.0.3",
     "node-sass": "^4.9.0",
     "react-router-dom": "^4.3.1",
     "sass-loader": "^7.0.2"
