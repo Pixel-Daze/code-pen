@@ -28,19 +28,24 @@ class MobxTodo extends Component {
 
     submit = () => {
         console.log(this.props)
-        this.props.store.addTodo(this.state.title)
+        this.props.store.listStore.addTodo(this.state.title)
+    }
+
+    componentDidMount(){
+        console.log(this.props)
     }
 
     render(){
+        const {store} = this.props
         return <div>
             <input type="text" value={this.state.title} name="title" onChange={e => this.handleChange(e)}/>
             <button onClick={this.submit}>submit</button>
             <ul>
-                {this.props.store.todos.map(todo => 
-                    <TodoView todo={todo} key={todo.id} />
+                {store.listStore.todos.map(todo => 
+                    <TodoView todo={todo} key={todo.id}/>
                 )}
             </ul>
-            Tasks left: {this.props.store.unfinishedTodoCount}
+            Tasks left: {store.listStore.unfinishedTodoCount}
         </div>
     }
 }

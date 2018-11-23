@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {HashRouter, Route, Switch} from 'react-router-dom';
-import { Hexagon, Clock, Form, Calculator, MobxSand, MobxTodo } from '@/pages';
+import { Hexagon, Clock, Form, Calculator, MobxSand, MobxTodo, MobxCal } from '@/pages';
 import {Provider} from 'mobx-react'
 
 import DevTools from 'mobx-react-devtools'
-import store from '@/store'
+import stores from '@/store'
 import './index.scss';
 
 class AppRouter extends Component{
@@ -12,7 +12,7 @@ class AppRouter extends Component{
     render(){
         return (
             <div>
-                <Provider store={store}>
+                <Provider store={stores}>
                     <HashRouter>
                         <Switch>
                             <Route exact path="/hexagon" component={Hexagon}/>
@@ -21,6 +21,7 @@ class AppRouter extends Component{
                             <Route path="/calculator" component={Calculator} />
                             <Route path="/mobxsand" component={MobxSand} />
                             <Route path="/mobxTodo" component={MobxTodo} />
+                            <Route path="/mobxCal" component={MobxCal} />
                         </Switch>
                     </HashRouter>
                 </Provider>

@@ -1,33 +1,13 @@
-import {observable, computed, action} from 'mobx';
+import ListStore from './ListStore';
+import CountStore from './CountStore'
 
-class Todo {
-    id = Math.random()
-    @observable title = '';
-    @observable finished = false;
-    constructor(title) {
-        this.title = title
-    }
+const listStore = new ListStore();
+const countStore = new CountStore();
+
+
+const stores = {
+    listStore,
+    countStore
 }
 
-class TodoList {
-    @observable todos = [];
-    @computed get unfinishedTodoCount() {
-        return this.todos.filter(todo => !todo.finished).length
-    }
-    @action
-    addTodo = title => {
-        if(!title) return
-        this.todos.push(new Todo(title))
-    }
-}
-
-const store = new TodoList();
-
-store.todos.push(
-    new Todo("Get Cooffe"),
-    new Todo("Write Simple code")
-)
-
-store.todos[0].finished = true
-
-export default store
+export default stores
