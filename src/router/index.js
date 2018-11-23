@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {HashRouter, Route, Switch} from 'react-router-dom';
-import { Hexagon, Clock, Form, Calculator, MobxSand, MobxTodo, MobxCal } from '@/pages';
+import { Hexagon, Clock, Form, Calculator, MobxSand, MobxTodo, MobxCal, MobxCart } from '@/pages';
 import {Provider} from 'mobx-react'
 
 import DevTools from 'mobx-react-devtools'
@@ -22,6 +22,7 @@ class AppRouter extends Component{
                             <Route path="/mobxsand" component={MobxSand} />
                             <Route path="/mobxTodo" component={MobxTodo} />
                             <Route path="/mobxCal" component={MobxCal} />
+                            <Route path="/mobxCart" component={MobxCart} />
                         </Switch>
                     </HashRouter>
                 </Provider>
